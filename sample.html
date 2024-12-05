@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Muchiri Samuel">
+    <meta name="description" content="Simple multipage website">
+    <meta name="keywords" content="eduford,campus">
+    <link rel="stylesheet" href="style.css">
+    <title>Eduford University Website</title>
+  
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .course-section {
+            padding: 0px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            
+        }
+
+        .section-title {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .course-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .course-card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            width: 300px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .course-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .course-card h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin: 15px 0;
+        }
+
+        .course-card p {
+            color: #666;
+            padding: 0 20px;
+        }
+
+        .details-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .details-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tooltip.show {
+            display: block;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+
+
+        /* body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        } */
+
+        .discount-box {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            padding: 20px;
+            background-color: #a23c30;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #efef19;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .box:nth-child(1) { top: 20%; left: 10%; }
+        .box:nth-child(2) { top: 50%; left: 30%; }
+        .box:nth-child(3) { top: 30%; left: 60%; }
+        .box:nth-child(4) { top: 70%; left: 40%; }
+        .box:nth-child(5) { top: 40%; left: 80%; }
+
+        @keyframes float-left-to-right {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(100px); }
+        }
+
+        @keyframes float-right-to-left {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-100px); }
+        }
+
+        @keyframes float-top-to-bottom {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(100px); }
+        }
+
+        @keyframes float-bottom-to-top {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-100px); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-50px) translateX(50px); }
+        }
+
+        .congratulations {
+            font-size: 24px;
+            font-weight: bold;
+            animation: fadeIn 2s;
+            text-align: center;
+        }
+
+        .discount-price {
+            font-size: 18px;
+            margin-top: 10px;
+            animation: slideIn 2s;
+            text-align: center;
+        }
+
+        .follow-up-message {
+            font-size: 16px;
+            margin-top: 10px;
+            animation: fadeIn 2s;
+            text-align: center;
+            display: none; /* Hide by default */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #stop-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #stop-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        .discount-box-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-----Header section-->
+    <section id="sub-header">
+        <div class="wrapper1">
+            <nav>
+                <img style="width: 200px; height: 180px;" src="LOGGO.png" alt="eduford logo">
+                <div class="nav-links">
+               <ul>
+                <li><a href="http://127.0.0.1:5501/index.html">HOME</a></li>
+                <li><a href="http://127.0.0.1:5501/about.html">ABOUT</a></li>
+                <li><a href="http://127.0.0.1:5501/courses.html">COURSE</a></li>
+                <li><a href="http://127.0.0.1:5501/blog.html">BLOG</a></li>
+                <li><a href="http://127.0.0.1:5501/contact.html">CONTACT</a></li>
+               </ul> 
+            </div>
+            </nav>
+            
+        </div>
+        <h1>Our Courses</h1>
+    </section>
+    <!--Courses We Offer-->
+    <section id="courses">
+        <h1>Courses We Offer</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        <div class="wrapper2">
+            <div class="courses_col">
+                <h3>Intermediate</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus pariatur dolore tenetur reiciendis, numquam natus magnam beatae cupiditate alias sequi.</p>
+            </div>
+            <div class="courses_col">
+                <h3>Degree</h3>
+                <p>Deleniti blanditiis velit aperiam, doloremque amet illum explicabo voluptates quasi veritatis fugit, animi libero asperiores temporibus omnis? Ut, alias unde.</p>
+            </div>
+            <div class="courses_col">
+                <h3>Post Graduation</h3>
+                <p>Quod dicta, sapiente ab ut voluptates odit ipsum eos earum modi nihil sunt soluta! Explicabo omnis sunt quam dolor hic?</p>
+            </div>
+        
+            <div class="courses_col">
+                <h3>Intermediate</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus pariatur dolore tenetur reiciendis, numquam natus magnam beatae cupiditate alias sequi.</p>
+            </div>
+            <div class="courses_col">
+                <h3>Degree</h3>
+                <p>Deleniti blanditiis velit aperiam, doloremque amet illum explicabo voluptates quasi veritatis fugit, animi libero asperiores temporibus omnis? Ut, alias unde.</p>
+            </div>
+            <div class="courses_col">
+                <h3>Post Graduation</h3>
+                <p>Quod dicta, sapiente ab ut voluptates odit ipsum eos earum modi nihil sunt soluta! Explicabo omnis sunt quam dolor hic?</p>
+            </div>
+        </div>
+    </section>
+    <!--Facilities we Offer Info-->
+    <section id="fac">
+        <h1>Our Facilities</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <div class="wrapper4">
+            <div class="fac_col">
+                <img src="library.png" alt="library image">
+                <h3>World Class Library</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam eaque nisi cumque rem, explicabo tempore!</p>
+            </div>
+            <div class="fac_col">
+                <img src="basketball.png" alt="basketball image">
+                <h3>Largest Play Ground</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt aliquid ratione temporibus architecto a maxime?</p>
+            </div>
+            <div class="fac_col">
+                <img src="cafeteria.png" alt="cafeteria.png">
+                <h3>Tasty and Healthy Food</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus deleniti accusamus voluptas possimus aliquam facilis?</p>
+            </div>
+            <div class="fac_col">
+                <img src="library.png" alt="library image">
+                <h3>World Class Library</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam eaque nisi cumque rem, explicabo tempore!</p>
+            </div>
+            <div class="fac_col">
+                <img src="basketball.png" alt="basketball image">
+                <h3>Largest Play Ground</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt aliquid ratione temporibus architecto a maxime?</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="course-section">
+        <h2 class="section-title" style="color: #000000;" >Our Advanced Courses</h2>
+        <div class="course-container">
+            <div class="course-card" id="course1">
+                <img src="Technology.png" alt="Course 1">
+                <h3>Introduction to Programming</h3>
+                <p>Learn the basics of programming with interactive lessons and hands-on projects.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+            <div class="course-card" id="course2">
+                <img src="Technology.png" alt="Course 2">
+                <h3>Advanced Web Development</h3>
+                <p>Take your web development skills to the next level with advanced techniques and tools.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+            <div class="course-card" id="course3">
+                <img src="Technology.png" alt="Course 3">
+                <h3>Data Science Essentials</h3>
+                <p>Discover the world of data science with comprehensive modules and real-world applications.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+            <div class="course-card" id="course4">
+                <img src="Technology.png" alt="Course 4">
+                <h3>Advanced Python</h3>
+                <p>Learn the basics of programming with interactive lessons and hands-on projects.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+            <div class="course-card" id="course5">
+                <img src="Technology.png" alt="Course 5">
+                <h3>Full Stack Development</h3>
+                <p>Take your web development skills to the next level with advanced techniques and tools.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+            <div class="course-card" id="course6">
+                <img src="Technology.png" alt="Course 6">
+                <h3>Data Analyst Essentials</h3>
+                <p>Discover the world of data science with comprehensive modules and real-world applications.</p>
+                <button class="details-btn">View Details
+                    <div class="tooltip">More details coming soon!</div>
+                </button>
+            </div>
+        </div>
+    </section>
+    <h1 style="display: flex; justify-content: center; color: #000000;" >Discount Offer</h1>
+    <section class="discount-box">
+        <div class="container">
+            <div class="box" data-price="20%" data-subject="Web Development">Web Development</div>
+            <div class="box" data-price="15%" data-subject="Database Management">Database Management</div>
+            <div class="box" data-price="25%" data-subject="Cybersecurity">Cybersecurity</div>
+            <div class="box" data-price="30%" data-subject="Cloud Computing">Cloud Computing</div>
+            <div class="box" data-price="10%" data-subject="Machine Learning">Machine Learning</div>
+        </div>
+        <button id="stop-btn">Stop Floating</button>
+        <div id="discount" class="discount-box-content">
+            <div class="congratulations">Congratulations!</div>
+            <div class="discount-price">Discount Price: 20%</div>
+            <div class="follow-up-message">Our team will get in touch with you, Soon!</div>
+        </div>
+    </section>
+   
+    <!--Footer-->
+    <section id="about_us">
+        <div class="custom-shape-divider-bottom-1619278637">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+    </svg>
+        </div>
+        <div class="wrapper7">
+            <h1>About Us</h1>
+            <h5>For More Info Contact Us Via Our Social Media Accouts.</h5>
+            <br>
+            <hr>
+            <br>
+            <div class="acc">
+                <a href="https://www.facebook.com/profile.php?id=100071450444744&mibextid=ZbWKwL" target="_blank">
+                <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100071450444744&mibextid=ZbWKwL " target="_blank">
+                <i class='bx bxl-instagram'></i>
+                </a>
+                <a href="https://twitter.com/elonmusk" target="_blank">
+                <i class='bx bxl-twitter'></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nabin-nepali-09272b285/" target="_blank">
+                <i class='bx bxl-linkedin-square'></i>
+                </a>
+                <a href="https://youtu.be/rMfugUZD2dA?si=Ow1mun2RUvZnrxKS" target="_blank">
+                <i class='bx bxl-youtube'></i>
+                </a>
+
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Tribute-->
+    <div class="container">
+        <div class="copy">Copyright @ 2024</div>
+        <div class="designer" style="font-weight:900">Gurkha Guides Official Website</div>
+        <div class="app">Design by <em style="color:greenyellow;">Nabin Nepali(PHOENIX)</em></div>
+    </div>
+    </div>
+    <script>
+        document.querySelectorAll('.details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const tooltip = this.querySelector('.tooltip');
+                tooltip.classList.add('show');
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 1000); // Hide tooltip after 2 seconds
+            });
+        });
+
+
+       let stopButtonClickable = true;
+
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', () => {
+        const discount = box.getAttribute('data-price');
+        const discountBox = document.querySelector('.discount-box-content');
+        discountBox.querySelector('.discount-price').textContent = Discount Price: ${discount};
+        discountBox.style.display = 'block';
+        
+        setTimeout(() => {
+            discountBox.style.display = 'none';
+        }, 3000); // Hide discount box after 3 seconds
+    });
+});
+
+function applyRandomFloatAnimations() {
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach((box, index) => {
+        const animations = [
+            'float-left-to-right',
+            'float-right-to-left',
+            'float-top-to-bottom',
+            'float-bottom-to-top',
+            'float-reverse'
+        ];
+        const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+        box.style.animation = ${randomAnimation} 3s infinite ease-in-out;
+    });
+}
+
+document.getElementById('stop-btn').addEventListener('click', () => {
+    if (!stopButtonClickable) return;
+
+    stopButtonClickable = false;
+    setTimeout(() => {
+        stopButtonClickable = true;
+    }, 3000); // Re-enable button after 3 seconds
+
+    document.querySelectorAll('.box').forEach(box => {
+        box.style.animation = 'none'; // Stop floating animation
+    });
+
+    // Display congratulations message with a random discount and subject
+    const boxes = document.querySelectorAll('.box');
+    const randomBox = boxes[Math.floor(Math.random() * boxes.length)];
+    const randomDiscount = randomBox.getAttribute('data-price');
+    const randomSubject = randomBox.getAttribute('data-subject');
+
+    const discountBox = document.querySelector('.discount-box-content');
+    discountBox.querySelector('.discount-price').textContent = Discount Price: ${randomDiscount};
+    discountBox.querySelector('.congratulations').textContent = Congratulations! You won a discount on ${randomSubject};
+    discountBox.querySelector('.follow-up-message').style.display = 'block';
+    discountBox.style.display = 'block';
+
+    setTimeout(() => {
+        discountBox.style.display = 'none';
+    }, 5000); // Hide discount box after 5 seconds
+
+    applyRandomFloatAnimations(); // Apply random float animations to boxes
+});
+
+// Initialize floating animations on page load
+applyRandomFloatAnimations();
+    </script>
+</body>
+
+</html>
